@@ -1,0 +1,111 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+add_newline = false
+command_timeout = 500
+
+format = """
+[░▒▓](fg:234)\
+$directory\
+$git_branch\
+$git_status\
+[\uE0B0](fg:234) \
+$character"""
+
+right_format = """
+$status\
+$cmd_duration\
+$jobs\
+$terraform\
+$kubernetes\
+$azure\
+$username\
+$hostname\
+$time\
+[\uE0B2](fg:234 bg:none)"""
+
+[character]
+success_symbol = "[❯](fg:76)"
+error_symbol = "[❯](fg:196)"
+vimcmd_symbol = "[❮](fg:76)"
+vimcmd_replace_one_symbol = "[▶](fg:76)"
+vimcmd_replace_symbol = "[▶](fg:76)"
+vimcmd_visual_symbol = "[V](fg:76)"
+
+[directory]
+style = "fg:31 bg:234"
+format = "[ $path ]($style)[$read_only]($style)"
+truncation_length = 1
+truncation_symbol = ""
+fish_style_pwd_dir_length = 1
+read_only = ""
+read_only_style = "fg:178 bg:234"
+
+[git_branch]
+symbol = ""
+format = "[\uE0B1](fg:242 bg:234)[ $branch]($style)"
+style = "fg:76 bg:234"
+
+[git_status]
+style = "fg:178 bg:234"
+format = "([ $ahead_behind$stashed$conflicted$staged$modified$untracked]($style))[ ](bg:234)"
+ahead = "⇡${count}"
+behind = "⇣${count}"
+diverged = "⇡${ahead_count}⇣${behind_count}"
+stashed = "*${count} "
+conflicted = "~${count} "
+staged = "+${count} "
+modified = "!${count} "
+untracked = "?${count}"
+up_to_date = ""
+deleted = ""
+renamed = ""
+typechanged = ""
+
+[status]
+disabled = false
+format = "[\uE0B2](fg:234)[ $symbol ](fg:70 bg:234)"
+symbol = "✘"
+success_symbol = "✔"
+not_found_symbol = "✘"
+not_executable_symbol = "✘"
+sigint_symbol = "✘"
+signal_symbol = "✘"
+map_symbol = false
+pipestatus = false
+
+[cmd_duration]
+min_time = 3000
+format = "[\uE0B3](fg:242 bg:234)[ took ](fg:244 bg:234)[$duration ](fg:248 bg:234)"
+
+[jobs]
+symbol = "≡"
+threshold = 1
+number_threshold = 9999
+format = "[\uE0B3](fg:242 bg:234)[ $symbol ](fg:37 bg:234)"
+
+[terraform]
+format = "[\uE0B3](fg:242 bg:234)[ $workspace ](fg:38 bg:234)"
+
+[kubernetes]
+disabled = false
+symbol = "○"
+format = "[\uE0B3](fg:242 bg:234)[ at ](fg:244 bg:234)[$symbol $cluster( /$namespace) ](fg:134 bg:234)"
+
+[azure]
+disabled = false
+format = "[\uE0B3](fg:242 bg:234)[ $subscription ](fg:32 bg:234)"
+
+[username]
+show_always = false
+format = "[\uE0B3](fg:242 bg:234)[ with ](fg:244 bg:234)[$user]($style)"
+style_user = "fg:180 bg:234"
+style_root = "bold fg:178 bg:234"
+
+[hostname]
+ssh_only = true
+format = "[@$hostname ](fg:180 bg:234)"
+
+[time]
+disabled = false
+time_format = "%H:%M:%S"
+format = "[\uE0B3](fg:242 bg:234)[ at ](fg:244 bg:234)[$time ](fg:66 bg:234)"

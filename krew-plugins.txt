@@ -1,0 +1,6 @@
+cnpg
+node-shell
+nsenter
+sniff
+view-cert
+view-secret
